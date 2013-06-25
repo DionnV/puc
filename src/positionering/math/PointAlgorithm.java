@@ -1,14 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package positionering.math;
 
 import positionering.etc.Collection;
 import positionering.etc.Point;
 import positionering.etc.PointCollection;
 
-/**
+/** This class contains sourcecode which will find the best Point for the 
+ *  PositionCalculator.
  *
  * @author Dion
  */
@@ -16,10 +13,20 @@ public class PointAlgorithm {
     
     PointCollection p_coll;
     
+    /** Creates a PointAlgorithm object.
+     * 
+     * @param p_coll the PointCollection which has to be filtered.
+     */
     public PointAlgorithm(PointCollection p_coll){
         this.p_coll = p_coll;
     }
     
+    /** Calculates the average of all x- and y-coordinates in 
+     *  the given PointCollection.
+     * 
+     * @param p_c the given PointCollection.
+     * @return a Point object containing the average x- and y-coordinates.
+     */
     public Point getAverage(PointCollection p_c){
         int cum_x = 0;
         int cum_y = 0;
@@ -35,6 +42,14 @@ public class PointAlgorithm {
         return new Point(dx, dy);
     }
     
+    /** Starts the algorithm.
+     *  The algorithm will filter all PointCollections and will then return
+     *  the getAverage()-method outcome of the PointCollection containing the
+     *  most Points.
+     * 
+     * @return a point containing the outcome of the getAverage()-method.
+     * @see PointCollection.filter().
+     */
     public Point process(){
         PointCollection max = new PointCollection();
         Collection col = new Collection();

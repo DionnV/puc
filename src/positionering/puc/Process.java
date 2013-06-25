@@ -2,7 +2,7 @@ package positionering.puc;
 
 import positionering.gui.*;
 
-/**
+/** This class contains the main method.
  *
  * @author Dion
  */

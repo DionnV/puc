@@ -8,31 +8,30 @@ import static com.googlecode.javacv.cpp.opencv_highgui.cvSaveImage;
 import static com.googlecode.javacv.cpp.opencv_imgproc.*;
 import positionering.etc.Point;
 
-/**
+/** This class contains sourcecode to filter an image given a BGR range.
  *
  * @author Dion
  */
 public class TargetFinder {
-        
-    //Standaard; alle kleuren inbegrepen
+       
     private CvScalar min = cvScalar(0,0,0,0);//BGR-A
     private CvScalar max = cvScalar(255.0, 255.0, 255.0, 0.0);//BGR-A
     
-    //(x, y)- positie van het gevonden vlak
     private int posX = 0;
     private int posY = 0;
     
-    /** Constructor zonder parameters
+    /** Creates a TargetFinder object.
      * 
      */
     public TargetFinder() {
-        //initialiseer constructor
     }
 
-    /** Detecteert een vlak binnen het kleurenbereik van de cvScalars.
+    /** This method filters out all the color which are not in the given range.
+     *  It will then calculate the center of the remaining pixels and return
+     *  a Point object.
      * 
-     * @param filename Plaats van de .jpeg-file
-     * @return een Point met de (x, y) - coordinaten van het midden van het vlak
+     * @param filename the path to the file.
+     * @return a Point object.
      */
     public Point detectPosition(String filename) {
         IplImage image = cvLoadImage(filename);
@@ -45,9 +44,6 @@ public class TargetFinder {
 
             //smooth the image
             cvSmooth(image, image, CV_GAUSSIAN, 3);
-
-            //Just for testing
-            cvSaveImage("C:/Imtech/Posipics/filtered/" + filename, imgThreshold);
 
             //release image from the memory
             cvReleaseImage(image);
@@ -69,16 +65,21 @@ public class TargetFinder {
         return new Point(posX, posY);
     }
     
-    /** Past cvScalars aan naar het gewenste kleurenbereik.
+    /** Sets the target color.
      * 
-     * @param min minimale bereik als in [blue, green, red, 0]
-     * @param max maximale bereik als in [blue, green, red, 0]
+     * @param min minimal range as in [blue, green, red, 0]
+     * @param max maximal range as in [blue, green, red, 0]
      */
     public void setTargetColor(int[] min, int[] max){
         this.min = cvScalar(min[0], min[1], min[2], min[3]);//BGR-A
         this.max = cvScalar(max[0], max[1], max[2], max[3]);//BGR-A
     }
     
+    /** Loads a file, thresholds it and then saves it.
+     *  This method is only used for testing purposes.
+     * 
+     * @param filename the path to the filename.
+     */
     public void loadAndSave(String filename){
         IplImage image = cvLoadImage(filename);    
         if (image != null) {

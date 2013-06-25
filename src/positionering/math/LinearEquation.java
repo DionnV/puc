@@ -2,7 +2,7 @@ package positionering.math;
 
 import positionering.etc.Point;
 
-/**
+/** This class contains sourcecode to create a linear equation.
  *
  * @author Dion
  */
@@ -11,23 +11,23 @@ public class LinearEquation {
     private double slope;
     private double b;
 
-    /**
-     * Maakt een lineaire vergelijking met een helling en een constante b.
+    /** Creates a LinearEquation object.
+     * 
      *
-     * @param slope de helling.
-     * @param b de constante.
+     * @param slope the slope.
+     * @param b the constant.
      */
     public LinearEquation(double slope, double b) {
         this.slope = slope;
         this.b = b;
     }
 
-    /**
-     * Maakt een lineaire vergelijking aan de hand van de helling en een punt.
+    /** Creates a LinearEquation object given a Point and a slope.
+     *  
      *
-     * @param slope de helling.
-     * @param p het punt.
-     * @return een lineaire vergelijking in de vorm van y = ax + b.
+     * @param slope the slope.
+     * @param p the given Point.
+     * @return a LinearEquation.
      */
     public static LinearEquation createWithPoint(double slope, Point p) {
         if (p.x == 0) {
@@ -39,12 +39,12 @@ public class LinearEquation {
         }
     }
 
-    /**
-     * Zoekt het snijpunt tussen twee lineaire vergelijkingen.
+    /** Solves an equation of two linear lines.
+     * 
      *
      * @param le1 y = ax + b
      * @param le2 y = cx + d
-     * @return De oplossing van de twee vergelijkingen.
+     * @return the outcome of the equation in a Point object.
      */
     public static Point solve(LinearEquation le1, LinearEquation le2) {
         if (le1.slope == le2.slope) {
@@ -57,10 +57,6 @@ public class LinearEquation {
     }
 
     @Override
-    /**
-     * Retourneert een Stringrepresentatie van een lineaire vergelijking
-     *
-     */
     public String toString() {
         return "y = " + slope + "x + " + b;
     }

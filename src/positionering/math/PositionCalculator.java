@@ -4,7 +4,8 @@ package positionering.math;
 import positionering.etc.Point;
 import positionering.etc.PointCollection;
 
-/**
+/** This class contains sourcecode to calculate the position in a 
+ *  (1060, 795) space, given the angle of 8 cameras.
  *
  * @author Dion
  */
@@ -13,8 +14,6 @@ public class PositionCalculator {
     PointAlgorithm pa;
     PointCollection pc;
 
-    //Positie van de cams in het virtuele vlak 
-    //Vlak is 1280 bij 800
     public static final Point FIXED_CAM1_POS = new Point(0, 10);
     public static final Point FIXED_CAM2_POS = new Point(10, 0);
     public static final Point FIXED_CAM3_POS = new Point(1050, 0);
@@ -24,17 +23,8 @@ public class PositionCalculator {
     public static final Point FIXED_CAM7_POS = new Point(10, 795);
     public static final Point FIXED_CAM8_POS = new Point(0, 785);
            
-    //Kijkhoek camera is 60 graden maar geeft 180 graden beeld.
-    //scaling = 60/180 = 0.3
-    /**
-     * De schaling van de kijkhoek
-     */
     public static final double scaling = 0.33333;
     
-    //Cams staat standaard gedraaid
-    /**
-     * De rotatie van de camera's
-     */
     public static final int FIXED_CAM1_ROTATION = 30;
     public static final int FIXED_CAM2_ROTATION = 0;
     public static final int FIXED_CAM3_ROTATION = 120;
@@ -44,23 +34,24 @@ public class PositionCalculator {
     public static final int FIXED_CAM7_ROTATION = 300;
     public static final int FIXED_CAM8_ROTATION = 270;
 
-    /** Een constructor zonder parameters
+    /** Creates a PositionCalculator object.
      * 
      */
     public PositionCalculator() {
-        //constructor to initialize
     }
 
-    /** Berekent de positie aan de hand van vier hoeken en de 
-     *  ingevoerde positie en rotatie.
-     * @param cam1_angle De hoek van camera 1.
-     * @param cam2_angle De hoek van camera 2.
-     * @param cam3_angle De hoek van camera 3.
-     * @param cam4_angle De hoek van camera 4.
-     * @return Het gevonden punt.
+    /** Calculates the position in the (1060, 795) space given all 8 camera angles.
+     * @param cam1_angle the angle of camera 1.
+     * @param cam2_angle the angle of camera 2.
+     * @param cam3_angle the angle of camera 3.
+     * @param cam4_angle the angle of camera 4.
+     * @param cam5_angle the angle of camera 5.
+     * @param cam6_angle the angle of camera 6.
+     * @param cam8_angle the angle of camera 7.
+     * @param cam7_angle the angle of camera 8.
+     * @return the Point containing the found x- and y-coordinates.
      */
     public Point calcPosition(double cam1_angle, double cam2_angle, double cam3_angle, double cam4_angle, double cam5_angle, double cam6_angle, double cam7_angle, double cam8_angle) {
-        //Schaal hoek met de scaling
         cam1_angle *= scaling;
         cam2_angle *= scaling;
         cam3_angle *= scaling;
@@ -70,7 +61,6 @@ public class PositionCalculator {
         cam7_angle *= scaling;
         cam8_angle *= scaling;
 
-        //Tel de fixed rotation bij de geschaalde hoek op
         cam1_angle += FIXED_CAM1_ROTATION;
         cam2_angle += FIXED_CAM2_ROTATION;
         cam3_angle += FIXED_CAM3_ROTATION;
@@ -80,7 +70,6 @@ public class PositionCalculator {
         cam7_angle += FIXED_CAM3_ROTATION;
         cam8_angle += FIXED_CAM4_ROTATION;
 
-        //Maak lineaire lijn
         LinearEquation le1 = LinearEquation.createWithPoint(Math.tan(Math.toRadians((double) cam1_angle)), FIXED_CAM1_POS);
         LinearEquation le2 = LinearEquation.createWithPoint(Math.tan(Math.toRadians((double) cam2_angle)), FIXED_CAM2_POS);
         LinearEquation le3 = LinearEquation.createWithPoint(Math.tan(Math.toRadians((double) cam3_angle)), FIXED_CAM3_POS);
@@ -90,7 +79,6 @@ public class PositionCalculator {
         LinearEquation le7 = LinearEquation.createWithPoint(Math.tan(Math.toRadians((double) cam7_angle)), FIXED_CAM7_POS);
         LinearEquation le8 = LinearEquation.createWithPoint(Math.tan(Math.toRadians((double) cam8_angle)), FIXED_CAM8_POS);
 
-        //Maak een PointCollection met intersecties
         pc = new PointCollection();
         pc.add(LinearEquation.solve(le1, le3));
         pc.add(LinearEquation.solve(le1, le4));

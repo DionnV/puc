@@ -1,10 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package positionering.etc;
 
-/**
+/** This file contains enums containing information about which boat is selected
+ *  and whether the front or back is selected.
  *
  * @author Dion
  */

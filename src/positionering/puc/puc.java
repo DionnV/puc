@@ -10,7 +10,7 @@ import positionering.javacv.TargetFinder;
 import positionering.math.AngleCalculator;
 import positionering.math.PositionCalculator;
 
-/**
+/** This class contains the sourcecode of the puc - Positioning Using Cameras.
  *
  * @author Dion
  */
@@ -63,6 +63,9 @@ public class puc {
     int[] max;
     private boolean running;
 
+    /** Creates a puc object.
+     * 
+     */
     public puc() {
         running = false;
         tf = new TargetFinder();
@@ -70,6 +73,9 @@ public class puc {
         pc = new PositionCalculator();
     }
 
+    /** Runs the positioning.
+     * 
+     */
     public void run() {
         running = true;
         refreshSnapshots();
@@ -138,6 +144,9 @@ public class puc {
         running = false;
     }
 
+    /** Refreshes the snapshots of the cameras.
+     * 
+     */
     public void refreshSnapshots() {
         try {
             //Create URL's
@@ -182,6 +191,10 @@ public class puc {
         }
     }
 
+    /** Returns whether the puc is running.
+     * 
+     * @return the boolean running.
+     */
     public boolean isRunning() {
         return running;
     }

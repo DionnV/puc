@@ -3,28 +3,28 @@ package positionering.math;
 
 import positionering.etc.Point;
 
-/**
+/** This class contains sourcecode to calculate an angle.
  *
  * @author Dion
  */
 public class AngleCalculator {
     
-    /** Het midden van de .jpeg inputfile
+    /** The center of the output file.
      * 
      */
     public static final int CENTER_CAM = 640/2;
     
-    /** Constructur zonder parameters
+    /** Creates an AngleCalculator object.
      * 
      */
     public AngleCalculator(){   
     }
     
     
-    /** Berekent de hoek tussen het midden van de .jpeg inputfile en het
-     *  gevonden punt.
-     * @param update het gevonden punt.
-     * @return de hoek
+    /** Calculates the angle between the center of the output file and
+     *  the given point.
+     * @param update the given point.
+     * @return the angle.
      */
     public double update(Point update){
         double angle;
