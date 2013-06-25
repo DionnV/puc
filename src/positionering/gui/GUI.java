@@ -3,9 +3,9 @@ package positionering.gui;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
-import positionering.etc.Point;
 import java.awt.Rectangle;
 import javax.swing.JFrame;
+import positionering.etc.Point;
 
 /**
  *

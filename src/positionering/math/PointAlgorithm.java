@@ -29,8 +29,8 @@ public class PointAlgorithm {
             cum_y += p.y;
         }
         
-        int dx = cum_x/p_c.size();
-        int dy = cum_y/p_c.size();
+        int dx = (int) cum_x/p_c.size();
+        int dy = (int) cum_y/p_c.size();
         
         return new Point(dx, dy);
     }

@@ -40,7 +40,7 @@ public class PointCollection implements Iterable<Point> {
     }
 
     /**
-     * Filtert alle punten uit de PointCollection die niet in range r van het
+     * Filterd alle punten uit de PointCollection die niet in range r van het
      * gegeven punt liggen.
      *
      * @param index Het punt waarover gefiltert moet worden.
@@ -62,7 +62,7 @@ public class PointCollection implements Iterable<Point> {
 
     @Override
     public Iterator<Point> iterator() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return new PointIterator();
     }
 
     private class PointIterator implements Iterator<Point> {
