@@ -2,7 +2,8 @@ package positionering.math;
 
 import positionering.etc.Point;
 
-/** This class contains sourcecode to create a linear equation.
+/**
+ * This class contains sourcecode to create a linear equation.
  *
  * @author Dion
  */
@@ -11,8 +12,8 @@ public class LinearEquation {
     private double slope;
     private double b;
 
-    /** Creates a LinearEquation object.
-     * 
+    /**
+     * Creates a LinearEquation object.
      *
      * @param slope the slope.
      * @param b the constant.
@@ -22,8 +23,8 @@ public class LinearEquation {
         this.b = b;
     }
 
-    /** Creates a LinearEquation object given a Point and a slope.
-     *  
+    /**
+     * Creates a LinearEquation object given a Point and a slope.
      *
      * @param slope the slope.
      * @param p the given Point.
@@ -39,8 +40,8 @@ public class LinearEquation {
         }
     }
 
-    /** Solves an equation of two linear lines.
-     * 
+    /**
+     * Solves an equation of two linear lines.
      *
      * @param le1 y = ax + b
      * @param le2 y = cx + d

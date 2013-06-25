@@ -1,19 +1,20 @@
-
 package positionering.math;
 
 import positionering.etc.Point;
 import positionering.etc.PointCollection;
 
-/** This class contains sourcecode to calculate the position in a 
- *  (1060, 795) space, given the angle of 8 cameras.
+/**
+ * This class contains sourcecode to calculate the position in a (1060, 795)
+ * space, given the angle of 8 cameras.
  *
  * @author Dion
  */
 public class PositionCalculator {
-    
-    PointAlgorithm pa;
-    PointCollection pc;
 
+    /**
+     * These static final Point objects contain the fixed position of the
+     * cameras in the (1060, 795) space.
+     */
     public static final Point FIXED_CAM1_POS = new Point(0, 10);
     public static final Point FIXED_CAM2_POS = new Point(10, 0);
     public static final Point FIXED_CAM3_POS = new Point(1050, 0);
@@ -22,9 +23,15 @@ public class PositionCalculator {
     public static final Point FIXED_CAM6_POS = new Point(1050, 795);
     public static final Point FIXED_CAM7_POS = new Point(10, 795);
     public static final Point FIXED_CAM8_POS = new Point(0, 785);
-           
+    /**
+     * This static final double contains the scaling of the cameras. This is
+     * equal to 180 divided by the camera viewing anlge, which is 60 degrees in
+     * this case.
+     */
     public static final double scaling = 0.33333;
-    
+    /**
+     * These static final int objects contain the fixed rotation of the cameras.
+     */
     public static final int FIXED_CAM1_ROTATION = 30;
     public static final int FIXED_CAM2_ROTATION = 0;
     public static final int FIXED_CAM3_ROTATION = 120;
@@ -33,14 +40,19 @@ public class PositionCalculator {
     public static final int FIXED_CAM6_ROTATION = 180;
     public static final int FIXED_CAM7_ROTATION = 300;
     public static final int FIXED_CAM8_ROTATION = 270;
+    private PointAlgorithm pa;
+    private PointCollection pc;
 
-    /** Creates a PositionCalculator object.
-     * 
+    /**
+     * Creates a PositionCalculator object.
      */
     public PositionCalculator() {
     }
 
-    /** Calculates the position in the (1060, 795) space given all 8 camera angles.
+    /**
+     * Calculates the position in the (1060, 795) space given all 8 camera
+     * angles.
+     *
      * @param cam1_angle the angle of camera 1.
      * @param cam2_angle the angle of camera 2.
      * @param cam3_angle the angle of camera 3.
@@ -96,7 +108,7 @@ public class PositionCalculator {
         pc.add(LinearEquation.solve(le5, le8));
         pc.add(LinearEquation.solve(le6, le7));
         pc.add(LinearEquation.solve(le6, le8));
-        
+
         pa = new PointAlgorithm(pc);
 
         return pa.process();

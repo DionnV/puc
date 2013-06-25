@@ -3,7 +3,8 @@ package positionering.etc;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-/** This class contains sourcecode to create a PointCollection.
+/**
+ * This class contains sourcecode to create a PointCollection.
  *
  * @author Dion
  */
@@ -12,16 +13,17 @@ public class PointCollection implements Iterable<Point> {
     private int size;
     private Point[] p_coll;
 
-    /** Creates a PointCollection object.
-     * 
+    /**
+     * Creates a PointCollection object.
      */
     public PointCollection() {
         size = 0;
         p_coll = new Point[16];
     }
 
-    /** Adds a Point to the PointCollection.
-     * 
+    /**
+     * Adds a Point to the PointCollection.
+     *
      * @param p The Point to be added.
      */
     public void add(Point p) {
@@ -34,8 +36,9 @@ public class PointCollection implements Iterable<Point> {
          */
     }
 
-    /** Returns the Point on the given index.
-     * 
+    /**
+     * Returns the Point on the given index.
+     *
      * @param index the index
      * @return the Point on the given index.
      */
@@ -43,16 +46,18 @@ public class PointCollection implements Iterable<Point> {
         return p_coll[index];
     }
 
-    /** Returns the size of the Collection.
-     * 
+    /**
+     * Returns the size of the Collection.
+     *
      * @return the size of the collection.
      */
     public int size() {
         return size;
     }
 
-    /** Filters all Point objects out of the PointCollection which are not 
-     * in the given range. 
+    /**
+     * Filters all Point objects out of the PointCollection which are not in the
+     * given range.
      *
      * @param index The main Point.
      * @param range The range.

@@ -10,12 +10,17 @@ import positionering.javacv.TargetFinder;
 import positionering.math.AngleCalculator;
 import positionering.math.PositionCalculator;
 
-/** This class contains the sourcecode of the puc - Positioning Using Cameras.
+/**
+ * This class contains the sourcecode of the puc - Positioning Using Cameras.
  *
  * @author Dion
  */
 public class puc {
 
+    /**
+     * These static final String objects contain the IP-addresses of the
+     * cameras.
+     */
     private static final String CAM1_IP = "http://192.168.0.11";
     private static final String CAM2_IP = "http://192.168.0.12";
     private static final String CAM3_IP = "http://192.168.0.13";
@@ -24,12 +29,34 @@ public class puc {
     private static final String CAM6_IP = "http://192.168.0.16";
     private static final String CAM7_IP = "http://192.168.0.17";
     private static final String CAM8_IP = "http://192.168.0.18";
+    /**
+     * This static final String object contains the used port.
+     */
     private static final String PORT = ":81";
+    /**
+     * This static final String object contains the snapshot suffix.
+     */
     private static final String SNAPSHOT = "/snapshot.jpg";
+    /**
+     * These static final String objects contain the username and password to
+     * log in the camera software.
+     */
     private static final String USERNAME = "admin";
     private static final String PASS = "admin";
+    /**
+     * This static final String object contains the getrequest to access the
+     * cameras.
+     */
     private static final String AUTH = "?user=" + USERNAME + "&pwd=" + PASS;
+    /**
+     * This static final String object contains the path to the save location of
+     * the snapshots.
+     */
     private static final String PATH = "C:/Imtech/Posipics/";
+    /**
+     * These static final String object contain the id given to the snapshots
+     * when saved.
+     */
     private static final String CAM1_PIC_ID = "cam1id.jpg";
     private static final String CAM2_PIC_ID = "cam2id.jpg";
     private static final String CAM3_PIC_ID = "cam3id.jpg";
@@ -38,6 +65,10 @@ public class puc {
     private static final String CAM6_PIC_ID = "cam6id.jpg";
     private static final String CAM7_PIC_ID = "cam7id.jpg";
     private static final String CAM8_PIC_ID = "cam8id.jpg";
+    /**
+     * This static final int[] objects contain BRG-values; the first three are
+     * for the minimum, the last three are for the maximum.
+     */
     private static final int[] BOAT1_FRONT_COLOR = {245, 118, 0, 255, 138, 00};
     private static final int[] BOAT2_FRONT_COLOR = {245, 0, 118, 255, 0, 138};
     private static final int[] BOAT3_FRONT_COLOR = {118, 0, 245, 138, 0, 255};
@@ -46,8 +77,6 @@ public class puc {
     private static final int[] BOAT2_BACK_COLOR = {0, 245, 118, 0, 255, 138};
     private static final int[] BOAT3_BACK_COLOR = {118, 245, 0, 138, 255, 0};
     private static final int[] BOAT4_BACK_COLOR = {0, 245, 245, 0, 255, 255};
-    public BoatEnum current_boat = BoatEnum.BOAT_1_FRONT;
-    public Point current_point;
     private String cam1_snapshot = CAM1_IP + PORT + SNAPSHOT + AUTH;
     private String cam2_snapshot = CAM2_IP + PORT + SNAPSHOT + AUTH;
     private String cam3_snapshot = CAM3_IP + PORT + SNAPSHOT + AUTH;
@@ -56,6 +85,8 @@ public class puc {
     private String cam6_snapshot = CAM6_IP + PORT + SNAPSHOT + AUTH;
     private String cam7_snapshot = CAM7_IP + PORT + SNAPSHOT + AUTH;
     private String cam8_snapshot = CAM8_IP + PORT + SNAPSHOT + AUTH;
+    public BoatEnum current_boat = BoatEnum.BOAT_1_FRONT;
+    public Point current_point;
     TargetFinder tf;
     AngleCalculator ac;
     PositionCalculator pc;
@@ -63,8 +94,8 @@ public class puc {
     int[] max;
     private boolean running;
 
-    /** Creates a puc object.
-     * 
+    /**
+     * Creates a puc object.
      */
     public puc() {
         running = false;
@@ -73,8 +104,8 @@ public class puc {
         pc = new PositionCalculator();
     }
 
-    /** Runs the positioning.
-     * 
+    /**
+     * Runs the positioning.
      */
     public void run() {
         running = true;
@@ -144,8 +175,8 @@ public class puc {
         running = false;
     }
 
-    /** Refreshes the snapshots of the cameras.
-     * 
+    /**
+     * Refreshes the snapshots of the cameras.
      */
     public void refreshSnapshots() {
         try {
@@ -191,8 +222,9 @@ public class puc {
         }
     }
 
-    /** Returns whether the puc is running.
-     * 
+    /**
+     * Returns whether the puc is running.
+     *
      * @return the boolean running.
      */
     public boolean isRunning() {
