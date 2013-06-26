@@ -1,6 +1,7 @@
 package positionering.gui;
 
 import java.awt.Color;
+import java.awt.Rectangle;
 //import positionering.etc.Point;
 import positionering.etc.Point;
 
@@ -18,56 +19,72 @@ public class Boot {
     private int[] pastX = new int[31];
     private int[] pastY = new int[31];
     private int lastPast;
+    private double heading;
+    public Rectangle rBoat;
     
     //CONSTRUCTORS
     /**
-     *  Lege constructor.
+     *  Empty constructor.
      */
     public Boot(){
         
     }
     
     /**
-     * Constructor die direct een gevulde boot aanmaakt.
-     * @param x de x-coordinaat van de te maken boot.
-     * @param y de y-coordinaat van de te maken boot.
-     * @param i de index van de te maken boot. Index bepaalt de kleur.
+     * Constructor that makes a filled boat.
+     * @param x the x-coordinate of the boat.
+     * @param y the y-coordinate of the boat.
+     * @param i the index of the boat. This also determines in which color the boat will be drawn.
      */
-    public Boot(int x, int y, int i){
+    public Boot(int x, int y, double heading, int i){
         setX(x);
         setY(y);
         setIndex(i);
         setKleur();
+        setHeading(heading);
+        rBoat = new Rectangle(width,heigth,getX(),getY());
         lastPast = 0;
         pastX[lastPast] = x;
         pastY[lastPast] = y;
     }
     
-    public void updateBoot(int x, int y){
+    /**
+     * Use this to update the position and heading of an already existing boat.
+     * @param x the new x-coordinate of the boat
+     * @param y the new y-coordinate of the boat
+     * @param heading the new heading of the boat
+     * This function also saves the last position in an array. This is used
+     * to draw a historical line in the GUI
+     */
+    public void updateBoot(int x, int y, double heading){
         if(lastPast < 30){
             lastPast++;
             pastX[lastPast] = getX();
             pastY[lastPast] = getY();
             setX(x);
             setY(y);
+            setHeading(heading);
+            rBoat.setBounds(width, heigth, getX(), getY());
         } else{
             lastPast = 0;
             pastX[lastPast] = x;
             pastY[lastPast] = y;
             setX(x);
             setY(y);
+            setHeading(heading);
+            rBoat.setBounds(width, heigth, getX(), getY());
         }
     }
 
     /**
-     * @return de x-coordinaten
+     * @return the current x-coordinate of the boat.
      */
     public int getX() {
         return x;
     }
 
     /**
-     * @param x de in te stellen x-coordinaat
+     * @param x the x-coordinate to set
      */
     public void setX(int x) {
         x = x-(width/2);
@@ -75,14 +92,14 @@ public class Boot {
     }
 
     /**
-     * @return de y-coordinaten
+     * @return the current y-coordinate of the boat.
      */
     public int getY() {
         return y;
     }
 
     /**
-     * @param y de in te stellen y-coordinaat
+     * @param y the y-coordinate of the boat to set.
      */
     public void setY(int y) {
         y = y-(heigth/2);
@@ -90,35 +107,35 @@ public class Boot {
     }
 
     /**
-     * @return de breedte van de te tekenen boot.
+     * @return the width of the boat (for drawing purposes)
      */
     public int getWidth() {
         return width;
     }
 
     /**
-     * @return de hoogte van de te tekenen boot.
+     * @return the heigth of the boat (for drawing purposes)
      */
     public int getHeigth() {
         return heigth;
     }
 
     /**
-     * @return de index van de boot
+     * @return the index of the boat
      */
     public int getIndex() {
         return index;
     }
 
     /**
-     * @param index de index van de boot
+     * @param index the index of the boat (only change when creating a new boat)
      */
     public void setIndex(int index) {
         this.index = index;
     }
 
     /**
-     * @return de kleur
+     * @return the color of the boat.
      */
     public Color getKleur() {
         return kleur;
@@ -129,7 +146,7 @@ public class Boot {
     }
 
     /**
-     * Kleur van boot bepalen aan de hand van Indexnummer.
+     * This function determines the color of the boat based on the index.
      */
     public void setKleur() {
         if(index==0){
@@ -141,6 +158,20 @@ public class Boot {
         }else{
            kleur = Color.BLACK; 
         }
+    }
+
+    /**
+     * @return the heading of this boat in degrees
+     */
+    public double getHeading() {
+        return heading;
+    }
+
+    /**
+     * @param heading the heading to set of this in degrees
+     */
+    public void setHeading(double heading) {
+        this.heading = heading;
     }
     
     

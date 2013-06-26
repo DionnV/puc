@@ -3,8 +3,10 @@ package positionering.gui;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import positionering.etc.Point;
 
 /**
@@ -31,9 +33,9 @@ public class GUI extends Canvas {
      * @param boat de locatie van de te tekenen boot
      * @param bootnr de index van de te tekenen boot
      */
-    public GUI(Point boat, int bootnr) {
+    public GUI(Point boat, double heading, int bootnr) {
         build();
-        locateBoat(boat, bootnr);
+        locateBoat(boat, heading, bootnr);
     }
     /**
      * Een frame creeeren met vaste instellingen.
@@ -50,14 +52,14 @@ public class GUI extends Canvas {
      * @param boat de cooordinaten van de te tekenen boot.
      * @param bootnr de index van de te tekenen boot.
      */
-    public void locateBoat(Point boat, int bootnr) {
+    public void locateBoat(Point boat, double heading, int bootnr) {
         bootnr = bootnr -1;
         boat.x = (boat.x + startBakX);
         boat.y = (boat.y + startBakY);
         if(boats[bootnr] == null){
-            boats[bootnr] = new Boot(boat.x, boat.y, bootnr);
+            boats[bootnr] = new Boot(boat.x, boat.y, heading, bootnr);
         } else {
-            boats[bootnr].updateBoot(boat.x, boat.y);
+            boats[bootnr].updateBoot(boat.x, boat.y, heading);
         }
         if (aFrame.isVisible()) {
             repaint();
@@ -78,20 +80,23 @@ public class GUI extends Canvas {
      */
     @Override
     public void paint(Graphics g) {
-        g.setColor(Color.BLUE);
-        g.fillRect(startBakX, startBakY, 1060, 795);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setColor(Color.BLUE);
+        g2d.fillRect(startBakX, startBakY, 1060, 795);
         for (int i = 0; i < boats.length; i++) {
-            int last = 0;
+            //int last = 0;
             if (boats[i] != null) {
-                g.setColor(boats[i].getKleur());
-                g.fillRect(boats[i].getX(), boats[i].getY(), boats[i].getHeigth(), boats[i].getWidth());
-                for(int a = 1; boats[i].getPastPosition(a).x!=0&&a<30; a++){
-                    g.drawLine(boats[i].getPastPosition(a).x,boats[i].getPastPosition(a).y,boats[i].getPastPosition((a-1)).x,boats[i].getPastPosition((a-1)).y);
-                    last = a;
-                }
-                if(boats[i].getPastPosition(last).x !=0){
-                    g.drawLine(boats[i].getPastPosition(last).x, boats[i].getPastPosition(last).y, boats[i].getX(), boats[i].getY());
-                }
+                g2d.setColor(Color.CYAN);
+                Rectangle test = new Rectangle(boats[i].getX(), boats[i].getY(), boats[i].getWidth(),boats[i].getHeigth());
+                g2d.fill(test);
+                JOptionPane.showMessageDialog(aFrame, "");
+                g2d.setColor(Color.red);
+                g2d.rotate(Math.toRadians(boats[i].getHeading()), boats[i].getX()+(boats[i].getWidth()/2), boats[i].getY()+(boats[i].getHeigth()/2));
+//                g2d.draw(boats[i].rBoat);              
+                g2d.fill(test);
+                g2d.setColor(Color.BLACK);
+                g2d.drawString("^", (float)test.getCenterX(), (float)test.getCenterY());
+         
             }
 
         }
