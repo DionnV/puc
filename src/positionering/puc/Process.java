@@ -16,7 +16,7 @@ public class Process {
             pucproc.run();
             while (pucproc.isRunning()) {
             }
-            a.locateBoat(pucproc.current_point, 1);
+            //a.locateBoat(pucproc.current_point, 1);
             try {
                 Thread.sleep(100);
             } catch (Exception e) {
