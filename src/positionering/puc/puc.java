@@ -69,11 +69,13 @@ public class puc {
      * This static final int[] objects contain BRG-values; the first three are
      * for the minimum, the last three are for the maximum.
      */
+    //Orange
     private static final int[] BOAT1_FRONT_COLOR = {245, 118, 0, 255, 138, 00};
     private static final int[] BOAT2_FRONT_COLOR = {245, 0, 118, 255, 0, 138};
     private static final int[] BOAT3_FRONT_COLOR = {118, 0, 245, 138, 0, 255};
-    private static final int[] BOAT4_FRONT_COLOR = {245, 245, 0, 255, 255, 0};
-    private static final int[] BOAT1_BACK_COLOR = {0, 118, 245, 0, 138, 255};
+    private static final int[] BOAT4_FRONT_COLOR = {0, 118, 245, 0, 138, 255};
+    //Yellow
+    private static final int[] BOAT1_BACK_COLOR = {225, 225, 0, 255, 255, 0};
     private static final int[] BOAT2_BACK_COLOR = {0, 245, 118, 0, 255, 138};
     private static final int[] BOAT3_BACK_COLOR = {118, 245, 0, 138, 255, 0};
     private static final int[] BOAT4_BACK_COLOR = {0, 245, 245, 0, 255, 255};
@@ -161,6 +163,16 @@ public class puc {
         Point picpoint6 = tf.detectPosition(PATH + CAM6_PIC_ID);
         Point picpoint7 = tf.detectPosition(PATH + CAM7_PIC_ID);
         Point picpoint8 = tf.detectPosition(PATH + CAM8_PIC_ID);
+        
+        tf.loadAndSave(PATH + CAM1_PIC_ID);
+        tf.loadAndSave(PATH + CAM2_PIC_ID);
+        tf.loadAndSave(PATH + CAM3_PIC_ID);
+        tf.loadAndSave(PATH + CAM4_PIC_ID);
+        tf.loadAndSave(PATH + CAM5_PIC_ID);
+        tf.loadAndSave(PATH + CAM6_PIC_ID);
+        tf.loadAndSave(PATH + CAM7_PIC_ID);
+        tf.loadAndSave(PATH + CAM8_PIC_ID);
+        
 
         double cam1_angle = ac.update(picpoint1);
         double cam2_angle = ac.update(picpoint2);
