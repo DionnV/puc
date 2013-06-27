@@ -90,6 +90,7 @@ public class PositionCalculator {
         LinearEquation le6 = LinearEquation.createWithPoint(Math.tan(Math.toRadians((double) cam6_angle)), FIXED_CAM6_POS);
         LinearEquation le7 = LinearEquation.createWithPoint(Math.tan(Math.toRadians((double) cam7_angle)), FIXED_CAM7_POS);
         LinearEquation le8 = LinearEquation.createWithPoint(Math.tan(Math.toRadians((double) cam8_angle)), FIXED_CAM8_POS);
+               
 
         pc = new PointCollection();
         pc.add(LinearEquation.solve(le1, le3));

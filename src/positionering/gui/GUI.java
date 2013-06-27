@@ -86,10 +86,7 @@ public class GUI extends Canvas {
         for (int i = 0; i < boats.length; i++) {
             //int last = 0;
             if (boats[i] != null) {
-                g2d.setColor(Color.CYAN);
                 Rectangle test = new Rectangle(boats[i].getX(), boats[i].getY(), boats[i].getWidth(),boats[i].getHeigth());
-                g2d.fill(test);
-                JOptionPane.showMessageDialog(aFrame, "");
                 g2d.setColor(Color.red);
                 g2d.rotate(Math.toRadians(boats[i].getHeading()), boats[i].getX()+(boats[i].getWidth()/2), boats[i].getY()+(boats[i].getHeigth()/2));
 //                g2d.draw(boats[i].rBoat);              

@@ -73,7 +73,7 @@ public class Collection implements Iterable<PointCollection> {
 
         @Override
         public boolean hasNext() {
-            return size < 16;
+            return size < 16 && col[position]!=null;
         }
 
         @Override

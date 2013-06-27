@@ -67,8 +67,8 @@ public class PointCollection implements Iterable<Point> {
         PointCollection filtered = new PointCollection();
         filtered.add(this.get(index));
         for (Point p : this.p_coll) {
-            if (filtered.get(1).x <= p.x + range && filtered.get(1).x >= p.x - range) {
-                if (filtered.get(1).y <= p.y + range && filtered.get(1).y >= p.y - range) {
+            if (filtered.get(0).x <= p.x + range && filtered.get(0).x >= p.x - range) {
+                if (filtered.get(0).y <= p.y + range && filtered.get(0).y >= p.y - range) {
                     filtered.add(p);
                 }
             }
@@ -87,7 +87,7 @@ public class PointCollection implements Iterable<Point> {
 
         @Override
         public boolean hasNext() {
-            return size < 16;
+            return size < 16 && p_coll[position]!=null;
         }
 
         @Override

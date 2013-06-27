@@ -83,6 +83,7 @@ public class TargetFinder {
      */
     public void loadAndSave(String filename) {
         IplImage image = cvLoadImage(filename);
+        String[] name = filename.split("C:/Imtech/Posipics/");
         if (image != null) {
             //create binary image of original size
             IplImage imgThreshold = cvCreateImage(cvGetSize(image), 8, 1);
@@ -94,7 +95,7 @@ public class TargetFinder {
             cvSmooth(image, image, CV_GAUSSIAN, 3);
 
             //Just for testing
-            cvSaveImage("C:/Imtech/Posipics/filtered.jpg", imgThreshold);
+            cvSaveImage("C:/Imtech/Posipics/" + name[1].split(".jpg")[0] + "_filtered.jpg", imgThreshold);
 
             //release image from the memory
             cvReleaseImage(image);

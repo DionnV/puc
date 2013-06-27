@@ -20,7 +20,7 @@ public class PointAlgorithm {
      * @param p_coll the PointCollection which has to be filtered.
      */
     public PointAlgorithm(PointCollection p_coll) {
-        this.p_coll = p_coll;
+        this.p_coll = p_coll;       
     }
 
     /**
@@ -57,13 +57,14 @@ public class PointAlgorithm {
         PointCollection max = new PointCollection();
         Collection col = new Collection();
 
-        for (int i = 0; i < p_coll.size(); i++) {
+        for (int i = 0; i < p_coll.size(); i++) {                       
             col.add(p_coll.filter(i, 100));
         }
 
-        for (PointCollection p_c : col) {
-            if (p_c.size() >= max.size()) {
-                max = p_c;
+        for (int i = 0; i < col.size(); i++) {
+            PointCollection temp = col.get(i);         
+            if (temp.size() >= max.size()) {
+                max = temp;
             }
         }
         return getAverage(max);
