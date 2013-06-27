@@ -70,13 +70,15 @@ public class puc {
      * for the minimum, the last three are for the maximum.
      */
     //Orange
-    private static final int[] BOAT1_FRONT_COLOR = {245, 118, 0, 255, 138, 00};
-    private static final int[] BOAT2_FRONT_COLOR = {245, 0, 118, 255, 0, 138};
+    private static final int[] BOAT1_FRONT_COLOR = {0, 68, 165, 100, 138, 255};
+    //Purple
+    private static final int[] BOAT2_FRONT_COLOR = {72, 0, 72, 162, 60, 162};
     private static final int[] BOAT3_FRONT_COLOR = {118, 0, 245, 138, 0, 255};
     private static final int[] BOAT4_FRONT_COLOR = {0, 118, 245, 0, 138, 255};
     //Yellow
-    private static final int[] BOAT1_BACK_COLOR = {225, 225, 0, 255, 255, 0};
-    private static final int[] BOAT2_BACK_COLOR = {0, 245, 118, 0, 255, 138};
+    private static final int[] BOAT1_BACK_COLOR = {0, 145, 145, 100, 255, 255};
+    //Pink
+    private static final int[] BOAT2_BACK_COLOR = {30, 0, 180, 100, 255, 255};
     private static final int[] BOAT3_BACK_COLOR = {118, 245, 0, 138, 255, 0};
     private static final int[] BOAT4_BACK_COLOR = {0, 245, 245, 0, 255, 255};
     private String cam1_snapshot = CAM1_IP + PORT + SNAPSHOT + AUTH;
