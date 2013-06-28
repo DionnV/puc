@@ -36,6 +36,17 @@ public class PointCollection implements Iterable<Point> {
          */
     }
 
+    public void remove(int i) {
+        Point[] temp = new Point[p_coll.length -1];
+        for(int j=0;j<i;j++){
+        temp[j] = this.p_coll[j];
+        }
+        for(int j=i+1;j<p_coll.length;j++){
+        temp[j-1] = this.p_coll[j];
+        }
+        this.p_coll = temp;
+    }
+
     /**
      * Returns the Point on the given index.
      *

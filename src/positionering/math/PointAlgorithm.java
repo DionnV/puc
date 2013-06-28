@@ -54,6 +54,30 @@ public class PointAlgorithm {
      * @see PointCollection.filter().
      */
     public Point process() {
+        PointCollection temp_coll = this.p_coll;
+        Point p_final = new Point(0, 0);
+        for (int i = 0; i < 4; i++) {
+            Point p1 = getAverage(temp_coll);
+            double[] distance = new double[temp_coll.size()];
+            for (int j = 0; j < temp_coll.size(); j++) {
+                Point p_temp = temp_coll.get(j);
+                distance[j] = Math.abs(Math.sqrt((Math.pow((p_temp.y - p1.y), 2)) + (Math.pow((p_temp.x - p1.x), 2))));
+            }
+            double d_temp = 0;
+            int index = 0;
+            for (int m = 0; m < distance.length; m++) {
+                if (distance[m] > d_temp) {
+                    d_temp = distance[m];
+                    index = m;
+                }
+            }
+            temp_coll.remove(index);
+
+        }
+        return p_final;
+    }
+
+    public Point process2() {
         PointCollection max = new PointCollection();
         Collection col = new Collection();
 
