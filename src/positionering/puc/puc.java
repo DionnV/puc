@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
 import javax.imageio.ImageIO;
-import positionering.etc.BoatEnum;
+import positionering.etc.BoatState;
 import positionering.etc.Point;
 import positionering.javacv.TargetFinder;
 import positionering.math.AngleCalculator;
@@ -89,7 +89,7 @@ public class puc {
     private String cam6_snapshot = CAM6_IP + PORT + SNAPSHOT + AUTH;
     private String cam7_snapshot = CAM7_IP + PORT + SNAPSHOT + AUTH;
     private String cam8_snapshot = CAM8_IP + PORT + SNAPSHOT + AUTH;
-    public BoatEnum current_boat = BoatEnum.BOAT_1_FRONT;
+    public BoatState current_boat = BoatState.BOAT_1_FRONT;
     public Point current_point;
     TargetFinder tf;
     AngleCalculator ac;

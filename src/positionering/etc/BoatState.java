@@ -6,7 +6,7 @@ package positionering.etc;
  *
  * @author Dion
  */
-public enum BoatEnum {
+public enum BoatState {
 
     BOAT_1_FRONT,
     BOAT_1_BACK,
