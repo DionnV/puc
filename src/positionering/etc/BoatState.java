@@ -8,12 +8,27 @@ package positionering.etc;
  */
 public enum BoatState {
 
-    BOAT_1_FRONT,
-    BOAT_1_BACK,
-    BOAT_2_FRONT,
-    BOAT_2_BACK,
-    BOAT_3_FRONT,
-    BOAT_3_BACK,
-    BOAT_4_FRONT,
-    BOAT_4_BACK
+    BOAT_1_FRONT(1, 1),
+    BOAT_1_BACK(1, 2),
+    BOAT_2_FRONT(2, 1),
+    BOAT_2_BACK(2, 2),
+    BOAT_3_FRONT(3, 1),
+    BOAT_3_BACK(3, 2),
+    BOAT_4_FRONT(4, 1),
+    BOAT_4_BACK(4, 2);
+    private final int id;
+    private final int pos;
+
+    BoatState(int id, int pos) {
+        this.id = id;
+        this.pos = pos;
+    }
+
+    public int getId() {
+        return id;
+    }
+    
+    public int getPos(){
+        return pos;
+    }
 }

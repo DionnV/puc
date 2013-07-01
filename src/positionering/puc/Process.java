@@ -10,27 +10,36 @@ import positionering.heading.Heading;
  *
  * @author Dion
  */
-public class Process {
+public class Process implements Runnable {
 
-    public static void main(String[] args) {
-        Point front;
-        Point back;
+    @Override
+    public void run() {
+        Point front = new Point(0, 0);
+        Point back = new Point(0, 0);
         Point diff;
         puc pucproc = new puc();
-        GUI a = new GUI();
+        GUI gui = new GUI();
+
+        pucproc.initiate();
+
         while (true) {
             for (BoatState bs : BoatState.values()) {
                 pucproc.current_boat = bs;
-                pucproc.run();
+                pucproc.fire();
                 while (pucproc.isRunning()) {
+                    //Do nothing while its running.
                 }
-                front = pucproc.current_point;
-                System.out.println("Got front; " + front.toString());
-                back = pucproc.current_point;
-                System.out.println("Got back; " + back.toString());
+                if (bs.getPos() % 2 != 0) {
+                    front = pucproc.current_point;
+                    System.out.println("Got front; " + front.toString());
+                } else {
+                    back = pucproc.current_point;
+                    System.out.println("Got back; " + back.toString());
+                }
+
                 diff = new Point((front.x + back.x) / 2, (front.y + back.y) / 2);
                 System.out.println("Mean point; " + diff.toString());
-                a.locateBoat(diff, Heading.calc(front, back), 1);
+                gui.locateBoat(diff, Heading.calc(front, back), bs.getId());
                 try {
                     Thread.sleep(100);
                 } catch (Exception e) {

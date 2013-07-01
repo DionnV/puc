@@ -89,7 +89,7 @@ public class puc {
     private String cam6_snapshot = CAM6_IP + PORT + SNAPSHOT + AUTH;
     private String cam7_snapshot = CAM7_IP + PORT + SNAPSHOT + AUTH;
     private String cam8_snapshot = CAM8_IP + PORT + SNAPSHOT + AUTH;
-    public BoatState current_boat = BoatState.BOAT_1_FRONT;
+    public BoatState current_boat;
     public Point current_point;
     TargetFinder tf;
     AngleCalculator ac;
@@ -102,6 +102,12 @@ public class puc {
      * Creates a puc object.
      */
     public puc() {
+    }
+
+    /**
+     * Initiates the main settings for puc.
+     */
+    public void initiate() {
         running = false;
         tf = new TargetFinder();
         ac = new AngleCalculator();
@@ -111,7 +117,7 @@ public class puc {
     /**
      * Runs the positioning.
      */
-    public void run() {
+    public void fire() {
         running = true;
         refreshSnapshots();
 
@@ -165,16 +171,16 @@ public class puc {
         Point picpoint6 = tf.detectPosition(PATH + CAM6_PIC_ID);
         Point picpoint7 = tf.detectPosition(PATH + CAM7_PIC_ID);
         Point picpoint8 = tf.detectPosition(PATH + CAM8_PIC_ID);
-        
-        tf.loadAndSave(PATH + CAM1_PIC_ID);
-        tf.loadAndSave(PATH + CAM2_PIC_ID);
-        tf.loadAndSave(PATH + CAM3_PIC_ID);
-        tf.loadAndSave(PATH + CAM4_PIC_ID);
-        tf.loadAndSave(PATH + CAM5_PIC_ID);
-        tf.loadAndSave(PATH + CAM6_PIC_ID);
-        tf.loadAndSave(PATH + CAM7_PIC_ID);
-        tf.loadAndSave(PATH + CAM8_PIC_ID);
-        
+
+//        tf.loadAndSave(PATH + CAM1_PIC_ID);
+//        tf.loadAndSave(PATH + CAM2_PIC_ID);
+//        tf.loadAndSave(PATH + CAM3_PIC_ID);
+//        tf.loadAndSave(PATH + CAM4_PIC_ID);
+//        tf.loadAndSave(PATH + CAM5_PIC_ID);
+//        tf.loadAndSave(PATH + CAM6_PIC_ID);
+//        tf.loadAndSave(PATH + CAM7_PIC_ID);
+//        tf.loadAndSave(PATH + CAM8_PIC_ID);
+
 
         double cam1_angle = ac.update(picpoint1);
         double cam2_angle = ac.update(picpoint2);

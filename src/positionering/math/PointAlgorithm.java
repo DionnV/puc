@@ -72,7 +72,7 @@ public class PointAlgorithm {
                 }
             }
             temp_coll.remove(index);
-
+            p_final = getAverage(temp_coll);
         }
         return p_final;
     }
