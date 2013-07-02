@@ -6,6 +6,7 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import positionering.etc.BoatState;
 import positionering.etc.Point;
+import positionering.javacv.Calibration;
 import positionering.javacv.TargetFinder;
 import positionering.math.AngleCalculator;
 import positionering.math.PositionCalculator;
@@ -66,21 +67,17 @@ public class puc {
     private static final String CAM7_PIC_ID = "cam7id.jpg";
     private static final String CAM8_PIC_ID = "cam8id.jpg";
     /**
-     * This static final int[] objects contain BRG-values; the first three are
+     * These static final int[] objects contain BRG-values; the first three are
      * for the minimum, the last three are for the maximum.
      */
-    //Orange
-    private static final int[] BOAT1_FRONT_COLOR = {0, 68, 165, 100, 138, 255};
-    //Purple
-    private static final int[] BOAT2_FRONT_COLOR = {72, 0, 72, 162, 60, 162};
-    private static final int[] BOAT3_FRONT_COLOR = {118, 0, 245, 138, 0, 255};
-    private static final int[] BOAT4_FRONT_COLOR = {0, 118, 245, 0, 138, 255};
-    //Yellow
-    private static final int[] BOAT1_BACK_COLOR = {0, 145, 145, 100, 255, 255};
-    //Pink
-    private static final int[] BOAT2_BACK_COLOR = {30, 0, 180, 100, 255, 255};
-    private static final int[] BOAT3_BACK_COLOR = {118, 245, 0, 138, 255, 0};
-    private static final int[] BOAT4_BACK_COLOR = {0, 245, 245, 0, 255, 255};
+    private static final int[] BOAT1_FRONT_COLOR = Calibration.orange_bgr;
+    private static final int[] BOAT2_FRONT_COLOR = Calibration.purple_bgr;
+    private static final int[] BOAT3_FRONT_COLOR = Calibration.blue_bgr;
+    private static final int[] BOAT4_FRONT_COLOR = Calibration.cyan_bgr;
+    private static final int[] BOAT1_BACK_COLOR = Calibration.yellow_bgr;
+    private static final int[] BOAT2_BACK_COLOR = Calibration.pink_bgr;
+    private static final int[] BOAT3_BACK_COLOR = Calibration.lightgreen_bgr;
+    private static final int[] BOAT4_BACK_COLOR = Calibration.green_bgr;
     private String cam1_snapshot = CAM1_IP + PORT + SNAPSHOT + AUTH;
     private String cam2_snapshot = CAM2_IP + PORT + SNAPSHOT + AUTH;
     private String cam3_snapshot = CAM3_IP + PORT + SNAPSHOT + AUTH;
@@ -112,6 +109,7 @@ public class puc {
         tf = new TargetFinder();
         ac = new AngleCalculator();
         pc = new PositionCalculator();
+        Calibration.calibrate();
     }
 
     /**

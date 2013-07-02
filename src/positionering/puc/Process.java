@@ -32,6 +32,7 @@ public class Process implements Runnable {
                 if (bs.getPos() % 2 != 0) {
                     front = pucproc.current_point;
                     System.out.println("Got front; " + front.toString());
+                    break;
                 } else {
                     back = pucproc.current_point;
                     System.out.println("Got back; " + back.toString());
