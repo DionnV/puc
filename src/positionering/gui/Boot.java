@@ -18,12 +18,14 @@ public class Boot {
     private int heigth = 50;
     private int index;
     private Color kleur;
-    private int[] pastX = new int[31];
-    private int[] pastY = new int[31];
+    public Point[] past = new Point[31];
     private int lastPast;
     private double heading;
     public Rectangle rBoat;
+    public Rectangle voor;
     public Shape Boat;
+    public Shape Front;
+    
     
     //CONSTRUCTORS
     /**
@@ -48,8 +50,7 @@ public class Boot {
         setKleur();
         createBoatImage(heading);
         lastPast = 0;
-        pastX[lastPast] = x;
-        pastY[lastPast] = y;
+        past[lastPast] = middle;
     }
     
     /**
@@ -61,11 +62,11 @@ public class Boot {
      * to draw a historical line in the GUI
      */
     public void updateBoot(Point front, Point back){
-        if(lastPast < 30){
+        if(lastPast < 29){
+            lastPast++;
             heading =  calculateHeading(front, back);
             Point middle = new Point(calculateMiddle(front, back));
-            pastX[lastPast] = getX();
-            pastY[lastPast] = getY();
+            past[lastPast] = middle;
             setX(middle.x);
             setY(middle.y);
             createBoatImage(heading);
@@ -73,8 +74,7 @@ public class Boot {
             lastPast = 0;
             heading =  calculateHeading(front, back);
             Point middle = new Point(calculateMiddle(front, back));
-            pastX[lastPast] = x;
-            pastY[lastPast] = y;
+            past[lastPast] = middle;
             setX(middle.x);
             setY(middle.y);
             createBoatImage(heading);
@@ -178,15 +178,30 @@ public class Boot {
      */
     public void createBoatImage(double heading) {
         rBoat = new Rectangle(getX(),getY(),width,heigth);
+        voor = new Rectangle(getX(),getY(),width,heigth/3);
         AffineTransform transform = new AffineTransform();
         transform.rotate(Math.toRadians(heading),((double)getX()+width/2),((double)getY()+heigth/2));
-        System.out.println(getY());
         Boat = transform.createTransformedShape(rBoat);
+        Front = transform.createTransformedShape(voor);
+        
+        
     }
+    
+    /**
+     * Calculate the heading based on the front and the back of the boat.
+     * @param front The point that represents the front of the boat.
+     * @param back The point that represents the back of the boat.
+     * @return The heading of the boat.
+     */
     public double calculateHeading(Point front, Point back){
         return positionering.heading.Heading.calc(front, back);
     }
-    
+    /**
+     * Calculates the average middle point between the front and the back of the boat.
+     * @param front The point that represents the front of the boat.
+     * @param back The point that represents the back of the boat.
+     * @return The point that represents the middle of the boat.
+     */
     public Point calculateMiddle(Point front, Point back){
         Point middle = new Point();
         middle.x = (int)((front.x+back.x)/2);
