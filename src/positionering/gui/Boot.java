@@ -18,6 +18,7 @@ public class Boot {
     private int heigth = 50;
     private int index;
     private Color kleur;
+    private boolean vol = false;
     public Point[] past = new Point[31];
     private int lastPast;
     private double heading;
@@ -71,6 +72,7 @@ public class Boot {
             setY(middle.y);
             createBoatImage(heading);
         } else{
+            vol = true;
             lastPast = 0;
             heading =  calculateHeading(front, back);
             Point middle = new Point(calculateMiddle(front, back));
@@ -147,7 +149,12 @@ public class Boot {
     }
     
     public Point getPastPosition(int i){
-        return new Point(pastX[i],pastY[i]);
+       if(vol == true){
+           i = 30 - i;
+           return past[i];
+       }else{
+           return past[i];
+       }
     }
 
     /**

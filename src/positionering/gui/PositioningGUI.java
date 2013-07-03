@@ -23,6 +23,7 @@ public class PositioningGUI {
             Point front = new Point(b11,b12);
             Point back = new Point(b21,b22);
             a.locateBoat(front, back, bootnr);
+
         }
     }
 }
