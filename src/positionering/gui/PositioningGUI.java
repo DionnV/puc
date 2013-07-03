@@ -14,20 +14,9 @@ public class PositioningGUI {
      */
     public static void main(String[] args) {
         GUI a = new GUI();
-        for (int i = 0; i < 30; i++) {
-            int btnr = Integer.parseInt(JOptionPane.showInputDialog("index boot? bigproject"));
-            int x = Integer.parseInt(JOptionPane.showInputDialog("X-positie?"));
-            int y = Integer.parseInt(JOptionPane.showInputDialog("Y-positie?"));
-            double H = 45.0;        
-            Point boot = new Point(x, y);
-        //    a.locateBoat(boot, H,btnr);
- //       for (int i = 0; i < 30; i++) {
-//            JOptionPane.showInputDialog("index boot? bigproject");
-//            int x = Integer.parseInt(JOptionPane.showInputDialog("X-positie?"));
-//            int y = Integer.parseInt(JOptionPane.showInputDialog("Y-positie?"));
-       //     a.locateBoat(boot, H,1);
-            
-        }
-
+        int bootnr =1;
+        Point front = new Point(100,90);
+        Point back = new Point(101,91);
+        a.locateBoat(front, back, bootnr);    
     }
 }

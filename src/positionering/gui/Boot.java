@@ -62,19 +62,22 @@ public class Boot {
      */
     public void updateBoot(Point front, Point back){
         if(lastPast < 30){
-            lastPast++;
+            heading =  calculateHeading(front, back);
+            Point middle = new Point(calculateMiddle(front, back));
             pastX[lastPast] = getX();
             pastY[lastPast] = getY();
-            setX(x);
-            setY(y);
-           // setHeading(heading);
+            setX(middle.x);
+            setY(middle.y);
+            createBoatImage(heading);
         } else{
             lastPast = 0;
+            heading =  calculateHeading(front, back);
+            Point middle = new Point(calculateMiddle(front, back));
             pastX[lastPast] = x;
             pastY[lastPast] = y;
-            setX(x);
-            setY(y);
-          //  setHeading(heading);
+            setX(middle.x);
+            setY(middle.y);
+            createBoatImage(heading);
         }
     }
 
@@ -174,14 +177,14 @@ public class Boot {
      * @param heading the heading to set of this in degrees
      */
     public void createBoatImage(double heading) {
-        rBoat = new Rectangle(width,heigth);
+        rBoat = new Rectangle(getX(),getY(),width,heigth);
         AffineTransform transform = new AffineTransform();
-        transform.rotate(Math.toRadians(heading),rBoat.width/2,rBoat.height/2);
+        transform.rotate(Math.toRadians(heading),((double)getX()+width/2),((double)getY()+heigth/2));
+        System.out.println(getY());
         Boat = transform.createTransformedShape(rBoat);
     }
     public double calculateHeading(Point front, Point back){
-        double h = calculateHeading(front, back);
-        return h;
+        return positionering.heading.Heading.calc(front, back);
     }
     
     public Point calculateMiddle(Point front, Point back){

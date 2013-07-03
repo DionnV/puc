@@ -15,8 +15,8 @@ import positionering.etc.Point;
  */
 public class GUI extends Canvas {
 
-    private int startBakX = 90;
-    private int startBakY = 5;
+    public static int startBakX = 90;
+    public static int startBakY = 5;
     private JFrame aFrame = new JFrame("Positiebepaling");
     private Boot[] boats = new Boot[4];
 
@@ -26,16 +26,6 @@ public class GUI extends Canvas {
      */
     public GUI() {
         build();
-    }
-    /**
-     * Builds a visible GUI, in which the given boat is immediately drawn. 
-     * @param boat the position the boat that has to be drawn.
-     * @param bootnr the index of the boat that has to be drawn.
-     * @param heading the heading of the boat that has to be drawn.
-     */
-    public GUI(Point boat, double heading, int bootnr) {
-        build();
-       // locateBoat(boat, heading, bootnr);
     }
     /**
      * Create a GUI with set properties.
@@ -61,7 +51,7 @@ public class GUI extends Canvas {
         front.x = (front.x + startBakX);
         front.y = (front.y + startBakY);
         back.x = (back.x + startBakX);
-        back.y = (front.y + startBakY);
+        back.y = (back.y + startBakY);
         if(boats[bootnr] == null){
             boats[bootnr] = new Boot(front, back, bootnr);
         } else {
@@ -93,10 +83,7 @@ public class GUI extends Canvas {
             if (boats[i] != null) {
                 Graphics2D boot = (Graphics2D) g;
                 boot.setColor(boats[i].getKleur());
-//                boot.rotate(Math.toRadians(boats[i].getHeading()), boats[i].getX()+(boats[i].getWidth()/2), boats[i].getY()+(boats[i].getHeigth()/2));
                 boot.fill(boats[i].Boat);
-         
-
             }
 
         }
