@@ -85,11 +85,12 @@ public class GUI extends Canvas {
             //int last = 0;
             if (boats[i] != null) {
                 Graphics2D boot = (Graphics2D) g;
+                boot.setColor(boats[i].getKleur());
+                boot.fill(boats[i].Boat);
                 boot.setColor(Color.WHITE);
                 boot.fill(boats[i].Front);
                 boot.setColor(boats[i].getKleur());
-                boot.fill(boats[i].Boat);
-                for (int p = 30; p > 0; p--) {
+                for (int p = 29; p > 0; p--) {
                     if(boats[i].getPastPosition(p)!=null)
                         boot.drawLine(boats[i].getPastPosition(p).x, boats[i].getPastPosition(p).y, boats[i].getPastPosition(p-1).x, boats[i].getPastPosition(p-1).y);
                 }

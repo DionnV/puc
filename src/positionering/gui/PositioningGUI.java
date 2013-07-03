@@ -16,12 +16,12 @@ public class PositioningGUI {
         GUI a = new GUI();
         int bootnr = 1;
         for(int i = 0; i < 200;i = i+10){
-            int b11 = Integer.parseInt(JOptionPane.showInputDialog("x1"));
-            int b12 = Integer.parseInt(JOptionPane.showInputDialog("y1"));
-            int b21 = Integer.parseInt(JOptionPane.showInputDialog("x2"));
-            int b22 = Integer.parseInt(JOptionPane.showInputDialog("y2"));
-            Point front = new Point(b11,b12);
-            Point back = new Point(b21,b22);
+//            int b11 = Integer.parseInt(JOptionPane.showInputDialog("x1"));
+//            int b12 = Integer.parseInt(JOptionPane.showInputDialog("y1"));
+//            int b21 = Integer.parseInt(JOptionPane.showInputDialog("x2"));
+//            int b22 = Integer.parseInt(JOptionPane.showInputDialog("y2"));
+            Point front = new Point(i,i);
+            Point back = new Point(i+1,i+1);
             a.locateBoat(front, back, bootnr);
 
         }
