@@ -17,8 +17,8 @@ public class Calibration {
     private static final String yellow_bad = "C:/Imtech/Posipics/calibrate/yellow_bad.jpg";
     private static final String green_good = "C:/Imtech/Posipics/calibrate/green_good.jpg";
     private static final String green_bad = "C:/Imtech/Posipics/calibrate/green_bad.jpg";
-    private static final String lightgreen_good = "C:/Imtech/Posipics/calibrate/green_good.jpg";
-    private static final String lightgreen_bad = "C:/Imtech/Posipics/calibrate/green_bad.jpg";
+    private static final String beige_good = "C:/Imtech/Posipics/calibrate/beige_good.jpg";
+    private static final String beige_bad = "C:/Imtech/Posipics/calibrate/beige_bad.jpg";
     private static final String purple_good = "C:/Imtech/Posipics/calibrate/purple_good.jpg";
     private static final String purple_bad = "C:/Imtech/Posipics/calibrate/purple_bad.jpg";
     private static final String cyan_good = "C:/Imtech/Posipics/calibrate/cyan_good.jpg";
@@ -29,7 +29,7 @@ public class Calibration {
     public static int[] blue_bgr = new int[6];
     public static int[] green_bgr = new int[6];
     public static int[] cyan_bgr = new int[6];
-    public static int[] lightgreen_bgr = new int[6];
+    public static int[] beige_bgr = new int[6];
     public static int[] purple_bgr = new int[6];
 
     public static void calibrate() {
@@ -185,30 +185,30 @@ public class Calibration {
         }
         ImageFilter.clear();
         i = 0;
-        ImageFilter.filter(lightgreen_good);
+        ImageFilter.filter(beige_good);
         for (int k : ImageFilter.getBGRBounds()) {
             if (k > 255) {
-                lightgreen_bgr[i] = 255;
+                beige_bgr[i] = 255;
             } else {
-                lightgreen_bgr[i] = k;
+                beige_bgr[i] = k;
             }
             i++;
         }
         ImageFilter.clear();
         i = 0;
-        ImageFilter.filter(lightgreen_bad);
+        ImageFilter.filter(beige_bad);
         for (int k : ImageFilter.getBGRBounds()) {
-            if (i < 3 && lightgreen_bgr[i] > k) {
+            if (i < 3 && beige_bgr[i] > k) {
                 if (k < 0) {
-                    lightgreen_bgr[i] = 0;
+                    beige_bgr[i] = 0;
                 } else {
-                    lightgreen_bgr[i] = k;
+                    beige_bgr[i] = k;
                 }
-            } else if (i >= 3 && lightgreen_bgr[i] < k) {
+            } else if (i >= 3 && beige_bgr[i] < k) {
                 if (k > 255) {
-                    lightgreen_bgr[i] = 255;
+                    beige_bgr[i] = 255;
                 } else {
-                    lightgreen_bgr[i] = k;
+                    beige_bgr[i] = k;
                 }
             }
             i++;

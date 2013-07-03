@@ -18,27 +18,28 @@ public class GUI extends Canvas {
     private int startBakX = 90;
     private int startBakY = 5;
     private JFrame aFrame = new JFrame("Positiebepaling");
-    private Rectangle boat = new Rectangle();
     private Boot[] boats = new Boot[4];
 
     /**
-     * Een lege GUI bouwen, zonder deze zichtbaar te maken.
+     * Build empty GUI without making it visible.
+     * Not recommended!
      */
     public GUI() {
         build();
     }
     /**
-     * Een GUI bouwen, die teven gevuld wordt met de meegegeven boot. De GUI
-     * is direct zichtbaar
-     * @param boat de locatie van de te tekenen boot
-     * @param bootnr de index van de te tekenen boot
+     * Builds a visible GUI, in which the given boat is immediately drawn. 
+     * @param boat the position the boat that has to be drawn.
+     * @param bootnr the index of the boat that has to be drawn.
+     * @param heading the heading of the boat that has to be drawn.
      */
     public GUI(Point boat, double heading, int bootnr) {
         build();
-        locateBoat(boat, heading, bootnr);
+       // locateBoat(boat, heading, bootnr);
     }
     /**
-     * Een frame creeeren met vaste instellingen.
+     * Create a GUI with set properties.
+     * To change GUI settings, change this method.
      */
     private void build() {
 
@@ -48,18 +49,23 @@ public class GUI extends Canvas {
         aFrame.add(this);
     }
     /**
-     * Een boot tekenen in het vlak.
-     * @param boat de cooordinaten van de te tekenen boot.
-     * @param bootnr de index van de te tekenen boot.
+     * Draws a boat at a given location with specified heading.
+     * This function automatically detects if the boat has been previously drawn
+     * so no extra methods are needed to update a boat.
+     * @param boat the (new) position of the boat
+     * @param bootnr the index of the boat.
+     * @param heading the (new) heading of the boat.
      */
-    public void locateBoat(Point boat, double heading, int bootnr) {
+    public void locateBoat(Point front, Point back, int bootnr) {
         bootnr = bootnr -1;
-        boat.x = (boat.x + startBakX);
-        boat.y = (boat.y + startBakY);
+        front.x = (front.x + startBakX);
+        front.y = (front.y + startBakY);
+        back.x = (back.x + startBakX);
+        back.y = (front.y + startBakY);
         if(boats[bootnr] == null){
-            boats[bootnr] = new Boot(boat.x, boat.y, heading, bootnr);
+            boats[bootnr] = new Boot(front, back, bootnr);
         } else {
-            boats[bootnr].updateBoot(boat.x, boat.y, heading);
+            boats[bootnr].updateBoot(front, back);
         }
         if (aFrame.isVisible()) {
             repaint();
@@ -74,9 +80,8 @@ public class GUI extends Canvas {
 //        paint(g);
 //    }
     /**
-     * Het tekenen van de achtergrond en boten gebeurd in deze methode.
-     * Het hoe en waarom van deze methode is in duisternis gehuld.
-     * @param g Graphics waarvan ik niet weet hoe t werkt of waarom?
+     * Draws the complete GUI.
+     * @param g Graphics.
      */
     @Override
     public void paint(Graphics g) {
@@ -86,14 +91,12 @@ public class GUI extends Canvas {
         for (int i = 0; i < boats.length; i++) {
             //int last = 0;
             if (boats[i] != null) {
-                Rectangle test = new Rectangle(boats[i].getX(), boats[i].getY(), boats[i].getWidth(),boats[i].getHeigth());
-                g2d.setColor(Color.red);
-                g2d.rotate(Math.toRadians(boats[i].getHeading()), boats[i].getX()+(boats[i].getWidth()/2), boats[i].getY()+(boats[i].getHeigth()/2));
-//                g2d.draw(boats[i].rBoat);              
-                g2d.fill(test);
-                g2d.setColor(Color.BLACK);
-                g2d.drawString("^", (float)test.getCenterX(), (float)test.getCenterY());
+                Graphics2D boot = (Graphics2D) g;
+                boot.setColor(boats[i].getKleur());
+//                boot.rotate(Math.toRadians(boats[i].getHeading()), boats[i].getX()+(boats[i].getWidth()/2), boats[i].getY()+(boats[i].getHeigth()/2));
+                boot.fill(boats[i].Boat);
          
+
             }
 
         }

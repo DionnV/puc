@@ -76,7 +76,7 @@ public class puc {
     private static final int[] BOAT4_FRONT_COLOR = Calibration.cyan_bgr;
     private static final int[] BOAT1_BACK_COLOR = Calibration.yellow_bgr;
     private static final int[] BOAT2_BACK_COLOR = Calibration.pink_bgr;
-    private static final int[] BOAT3_BACK_COLOR = Calibration.lightgreen_bgr;
+    private static final int[] BOAT3_BACK_COLOR = Calibration.beige_bgr;
     private static final int[] BOAT4_BACK_COLOR = Calibration.green_bgr;
     private String cam1_snapshot = CAM1_IP + PORT + SNAPSHOT + AUTH;
     private String cam2_snapshot = CAM2_IP + PORT + SNAPSHOT + AUTH;

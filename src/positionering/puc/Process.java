@@ -37,10 +37,7 @@ public class Process implements Runnable {
                     back = pucproc.current_point;
                     System.out.println("Got back; " + back.toString());
                 }
-
-                diff = new Point((front.x + back.x) / 2, (front.y + back.y) / 2);
-                System.out.println("Mean point; " + diff.toString());
-                gui.locateBoat(diff, Heading.calc(front, back), bs.getId());
+                gui.locateBoat(front, back, bs.getId());
                 try {
                     Thread.sleep(100);
                 } catch (Exception e) {

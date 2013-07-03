@@ -16,9 +16,15 @@ public class Point {
      * @param x the x-coordinate.
      * @param y the y-coordinate.
      */
+    public Point(){
+    }
     public Point(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+    public Point(Point punt){
+        this.x = punt.x;
+        this.y = punt.y;
     }
 
     /**

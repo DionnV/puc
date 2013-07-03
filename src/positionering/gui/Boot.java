@@ -2,6 +2,8 @@ package positionering.gui;
 
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.geom.AffineTransform;
 //import positionering.etc.Point;
 import positionering.etc.Point;
 
@@ -21,6 +23,7 @@ public class Boot {
     private int lastPast;
     private double heading;
     public Rectangle rBoat;
+    public Shape Boat;
     
     //CONSTRUCTORS
     /**
@@ -36,13 +39,14 @@ public class Boot {
      * @param y the y-coordinate of the boat.
      * @param i the index of the boat. This also determines in which color the boat will be drawn.
      */
-    public Boot(int x, int y, double heading, int i){
-        setX(x);
-        setY(y);
+    public Boot(Point front, Point back, int i){
+        heading =  calculateHeading(front, back);
+        Point middle = new Point(calculateMiddle(front, back));
+        setX(middle.x);
+        setY(middle.y);
         setIndex(i);
         setKleur();
-        setHeading(heading);
-        rBoat = new Rectangle(width,heigth,getX(),getY());
+        createBoatImage(heading);
         lastPast = 0;
         pastX[lastPast] = x;
         pastY[lastPast] = y;
@@ -56,23 +60,21 @@ public class Boot {
      * This function also saves the last position in an array. This is used
      * to draw a historical line in the GUI
      */
-    public void updateBoot(int x, int y, double heading){
+    public void updateBoot(Point front, Point back){
         if(lastPast < 30){
             lastPast++;
             pastX[lastPast] = getX();
             pastY[lastPast] = getY();
             setX(x);
             setY(y);
-            setHeading(heading);
-            rBoat.setBounds(width, heigth, getX(), getY());
+           // setHeading(heading);
         } else{
             lastPast = 0;
             pastX[lastPast] = x;
             pastY[lastPast] = y;
             setX(x);
             setY(y);
-            setHeading(heading);
-            rBoat.setBounds(width, heigth, getX(), getY());
+          //  setHeading(heading);
         }
     }
 
@@ -168,10 +170,25 @@ public class Boot {
     }
 
     /**
+     * Sets heading and creates rotated rectangle for immediate drawing.
      * @param heading the heading to set of this in degrees
      */
-    public void setHeading(double heading) {
-        this.heading = heading;
+    public void createBoatImage(double heading) {
+        rBoat = new Rectangle(width,heigth);
+        AffineTransform transform = new AffineTransform();
+        transform.rotate(Math.toRadians(heading),rBoat.width/2,rBoat.height/2);
+        Boat = transform.createTransformedShape(rBoat);
+    }
+    public double calculateHeading(Point front, Point back){
+        double h = calculateHeading(front, back);
+        return h;
+    }
+    
+    public Point calculateMiddle(Point front, Point back){
+        Point middle = new Point();
+        middle.x = (int)((front.x+back.x)/2);
+        middle.y = (int)((front.y+back.y)/2);
+        return middle;
     }
     
     
