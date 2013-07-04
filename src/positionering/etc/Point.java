@@ -5,7 +5,7 @@ package positionering.etc;
  *
  * @author Dion
  */
-public class Point {
+public class Point extends Object{
 
     public int x;
     public int y;

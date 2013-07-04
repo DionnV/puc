@@ -71,10 +71,10 @@ public class puc {
      * for the minimum, the last three are for the maximum.
      */
     private static final int[] BOAT1_FRONT_COLOR = Calibration.orange_bgr;
-    private static final int[] BOAT2_FRONT_COLOR = Calibration.purple_bgr;
+    private static final int[] BOAT2_FRONT_COLOR = Calibration.green_bgr;
     private static final int[] BOAT3_FRONT_COLOR = Calibration.blue_bgr;
     private static final int[] BOAT4_FRONT_COLOR = Calibration.cyan_bgr;
-    private static final int[] BOAT1_BACK_COLOR = Calibration.yellow_bgr;
+    private static final int[] BOAT1_BACK_COLOR = Calibration.green_bgr;
     private static final int[] BOAT2_BACK_COLOR = Calibration.pink_bgr;
     private static final int[] BOAT3_BACK_COLOR = Calibration.beige_bgr;
     private static final int[] BOAT4_BACK_COLOR = Calibration.green_bgr;
@@ -110,6 +110,12 @@ public class puc {
         ac = new AngleCalculator();
         pc = new PositionCalculator();
         Calibration.calibrate();
+    }
+
+    public void initiateTest() {
+        running = false;
+        ac = new AngleCalculator();
+        pc = new PositionCalculator();
     }
 
     /**
@@ -170,14 +176,14 @@ public class puc {
         Point picpoint7 = tf.detectPosition(PATH + CAM7_PIC_ID);
         Point picpoint8 = tf.detectPosition(PATH + CAM8_PIC_ID);
 
-//        tf.loadAndSave(PATH + CAM1_PIC_ID);
-//        tf.loadAndSave(PATH + CAM2_PIC_ID);
-//        tf.loadAndSave(PATH + CAM3_PIC_ID);
-//        tf.loadAndSave(PATH + CAM4_PIC_ID);
-//        tf.loadAndSave(PATH + CAM5_PIC_ID);
-//        tf.loadAndSave(PATH + CAM6_PIC_ID);
-//        tf.loadAndSave(PATH + CAM7_PIC_ID);
-//        tf.loadAndSave(PATH + CAM8_PIC_ID);
+        tf.loadAndSave(PATH + CAM1_PIC_ID);
+        tf.loadAndSave(PATH + CAM2_PIC_ID);
+        tf.loadAndSave(PATH + CAM3_PIC_ID);
+        tf.loadAndSave(PATH + CAM4_PIC_ID);
+        tf.loadAndSave(PATH + CAM5_PIC_ID);
+        tf.loadAndSave(PATH + CAM6_PIC_ID);
+        tf.loadAndSave(PATH + CAM7_PIC_ID);
+        tf.loadAndSave(PATH + CAM8_PIC_ID);
 
 
         double cam1_angle = ac.update(picpoint1);
@@ -247,5 +253,29 @@ public class puc {
      */
     public boolean isRunning() {
         return running;
+    }
+
+    public void runTest(Point... p) {
+        running = true;
+        Point testpoint1 = p[0];
+        Point testpoint2 = p[1];
+        Point testpoint3 = p[2];
+        Point testpoint4 = p[3];
+        Point testpoint5 = p[4];
+        Point testpoint6 = p[5];
+        Point testpoint7 = p[6];
+        Point testpoint8 = p[7];
+
+        double cam1_angle = ac.update(testpoint1);
+        double cam2_angle = ac.update(testpoint2);
+        double cam3_angle = ac.update(testpoint3);
+        double cam4_angle = ac.update(testpoint4);
+        double cam5_angle = ac.update(testpoint5);
+        double cam6_angle = ac.update(testpoint6);
+        double cam7_angle = ac.update(testpoint7);
+        double cam8_angle = ac.update(testpoint8);
+
+        current_point = pc.calcPosition(cam1_angle, cam2_angle, cam3_angle, cam4_angle, cam5_angle, cam6_angle, cam7_angle, cam8_angle);
+        running = false;
     }
 }

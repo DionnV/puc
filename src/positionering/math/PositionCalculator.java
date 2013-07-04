@@ -11,18 +11,33 @@ import positionering.etc.PointCollection;
  */
 public class PositionCalculator {
 
+//    /**
+//     * These static final Point objects contain the fixed position of the
+//     * cameras in the (1060, 795) space.
+//     */
+//    public static final Point FIXED_CAM1_POS = new Point(0, 10);
+//    public static final Point FIXED_CAM2_POS = new Point(10, 0);
+//    public static final Point FIXED_CAM3_POS = new Point(1050, 0);
+//    public static final Point FIXED_CAM4_POS = new Point(1060, 10);
+//    public static final Point FIXED_CAM5_POS = new Point(1060, 785);
+//    public static final Point FIXED_CAM6_POS = new Point(1050, 795);
+//    public static final Point FIXED_CAM7_POS = new Point(10, 795);
+//    public static final Point FIXED_CAM8_POS = new Point(0, 785);
+    
     /**
      * These static final Point objects contain the fixed position of the
      * cameras in the (1060, 795) space.
+     * 
+     * !!!!!!!!!!!!!These are used for testing!!!!!!!!!!!!!
      */
-    public static final Point FIXED_CAM1_POS = new Point(0, 10);
-    public static final Point FIXED_CAM2_POS = new Point(10, 0);
-    public static final Point FIXED_CAM3_POS = new Point(1050, 0);
-    public static final Point FIXED_CAM4_POS = new Point(1060, 10);
-    public static final Point FIXED_CAM5_POS = new Point(1060, 785);
-    public static final Point FIXED_CAM6_POS = new Point(1050, 795);
-    public static final Point FIXED_CAM7_POS = new Point(10, 795);
-    public static final Point FIXED_CAM8_POS = new Point(0, 785);
+    public static final Point FIXED_CAM1_POS = new Point(0, 0);
+    public static final Point FIXED_CAM2_POS = new Point(0, 0);
+    public static final Point FIXED_CAM3_POS = new Point(1060, 0);
+    public static final Point FIXED_CAM4_POS = new Point(1060, 0);
+    public static final Point FIXED_CAM5_POS = new Point(1060, 795);
+    public static final Point FIXED_CAM6_POS = new Point(1060, 795);
+    public static final Point FIXED_CAM7_POS = new Point(0, 795);
+    public static final Point FIXED_CAM8_POS = new Point(0, 795);
     /**
      * This static final double contains the scaling of the cameras. This is
      * equal to 180 divided by the camera viewing anlge, which is 60 degrees in

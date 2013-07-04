@@ -47,6 +47,7 @@ public class PointCollection implements Iterable<Point> {
             temp[j - 1] = this.p_coll[j];
         }
         this.p_coll = temp;
+        size--;
     }
 
     /**

@@ -147,7 +147,7 @@ public class Boot {
     }
     
     public Point getPastPosition(int i){
-        return new Point(pastX[i],pastY[i]);
+        return new Point(past[i].x,past[i].y);
     }
 
     /**

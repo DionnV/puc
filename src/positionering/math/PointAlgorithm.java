@@ -20,7 +20,7 @@ public class PointAlgorithm {
      * @param p_coll the PointCollection which has to be filtered.
      */
     public PointAlgorithm(PointCollection p_coll) {
-        this.p_coll = p_coll;       
+        this.p_coll = p_coll;
     }
 
     /**
@@ -38,7 +38,6 @@ public class PointAlgorithm {
             cum_x += p.x;
             cum_y += p.y;
         }
-
         int dx = (int) cum_x / p_c.size();
         int dy = (int) cum_y / p_c.size();
 
@@ -56,23 +55,26 @@ public class PointAlgorithm {
     public Point process() {
         PointCollection temp_coll = this.p_coll;
         Point p_final = new Point(0, 0);
+        double[] distance;
         for (int i = 0; i < 4; i++) {
-            Point p1 = getAverage(temp_coll);
-            double[] distance = new double[temp_coll.size()];
-            for (int j = 0; j < temp_coll.size(); j++) {
-                Point p_temp = temp_coll.get(j);
-                distance[j] = Math.abs(Math.sqrt((Math.pow((p_temp.y - p1.y), 2)) + (Math.pow((p_temp.x - p1.x), 2))));
-            }
-            double d_temp = 0;
-            int index = 0;
-            for (int m = 0; m < distance.length; m++) {
-                if (distance[m] > d_temp) {
-                    d_temp = distance[m];
-                    index = m;
+            if (temp_coll.size() != 0) {
+                Point p1 = getAverage(temp_coll);
+                distance = new double[temp_coll.size()];
+                for (int j = 0; j < temp_coll.size(); j++) {
+                    Point p_temp = temp_coll.get(j);
+                    distance[j] = Math.abs(Math.sqrt((Math.pow((p_temp.y - p1.y), 2)) + (Math.pow((p_temp.x - p1.x), 2))));
                 }
+                double d_temp = 0;
+                int index = 0;
+                for (int m = 0; m < distance.length; m++) {
+                    if (distance[m] > d_temp) {
+                        d_temp = distance[m];
+                        index = m;
+                    }
+                }
+                temp_coll.remove(index);
+                p_final = getAverage(temp_coll);
             }
-            temp_coll.remove(index);
-            p_final = getAverage(temp_coll);
         }
         return p_final;
     }
@@ -81,12 +83,12 @@ public class PointAlgorithm {
         PointCollection max = new PointCollection();
         Collection col = new Collection();
 
-        for (int i = 0; i < p_coll.size(); i++) {                       
+        for (int i = 0; i < p_coll.size(); i++) {
             col.add(p_coll.filter(i, 100));
         }
 
         for (int i = 0; i < col.size(); i++) {
-            PointCollection temp = col.get(i);         
+            PointCollection temp = col.get(i);
             if (temp.size() >= max.size()) {
                 max = temp;
             }

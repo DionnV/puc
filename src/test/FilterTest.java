@@ -21,7 +21,7 @@ public class FilterTest {
         System.out.println("Blue bounds: " + java.util.Arrays.toString(positionering.javacv.Calibration.blue_bgr));
         
         TargetFinder tf = new TargetFinder();
-        tf.setTargetColor(new int[]{0, 0, 241, 0}, new int[]{122, 133, 255, 0});
+        tf.setTargetColor(new int[]{0, 181, 17, 0}, new int[]{147, 247, 240, 0});
         tf.loadAndSave("C:/Imtech/Posipics/calibrate/test.jpg");
     }
 }
