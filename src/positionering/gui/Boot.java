@@ -18,7 +18,8 @@ public class Boot {
     private int heigth = 50;
     private int index;
     private Color kleur;
-    public Point[] past = new Point[31];
+    private boolean vol = false;
+    public Point[] past = new Point[30];
     private int lastPast;
     private double heading;
     public Rectangle rBoat;
@@ -71,6 +72,7 @@ public class Boot {
             setY(middle.y);
             createBoatImage(heading);
         } else{
+            vol = true;
             lastPast = 0;
             heading =  calculateHeading(front, back);
             Point middle = new Point(calculateMiddle(front, back));
@@ -147,7 +149,12 @@ public class Boot {
     }
     
     public Point getPastPosition(int i){
-        return new Point(past[i].x,past[i].y);
+       if(vol == true){
+           i = 29 - i;
+           return past[i];
+       }else{
+           return past[i];
+       }
     }
 
     /**
@@ -183,8 +190,6 @@ public class Boot {
         transform.rotate(Math.toRadians(heading),((double)getX()+width/2),((double)getY()+heigth/2));
         Boat = transform.createTransformedShape(rBoat);
         Front = transform.createTransformedShape(voor);
-        
-        
     }
     
     /**
